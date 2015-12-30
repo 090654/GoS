@@ -44,7 +44,7 @@ OnTick(function(myHero)
 ---LUDENS ECHO CODE END---		
 		if not IsImmune(enemy, myHero) and IsObjectAlive(enemy) then
 			if CanUseSpell(myHero, _Q) == READY and Teemo.Killsteal.KQ:Value() and ValidTarget(enemy, Qrange) and CalcDamage(myHero, enemy, 0,(45 + 45*GetCastLevel(myHero,_Q) + 0.8*GetBonusAP(myHero) + Ludens)) > GetCurrentHP(enemy) then
-				CastTargetSpell(target, _Q)
+				CastTargetSpell(enemy, _Q)
 			end
 		end
 	end
@@ -71,11 +71,11 @@ OnDraw(function(myHero)
 end)
 
 function AutoIgnite()
-    for _,Enemy in pairs(GetEnemyHeroes()) do
+    for _,enemy in pairs(GetEnemyHeroes()) do
         if Ignite and Teemo.Misc.AutoIgnite:Value() then
-			local HPShield = GetCurrentHP(Enemy)+GetDmgShield(Enemy)
-            if IsReady(Ignite) and 20*GetLevel(myHero)+50 > HPShield+(GetHPRegen(Enemy)*3) and ValidTarget(Enemy, 600) then
-              CastTargetSpell(Enemy, Ignite)
+			local HPShield = GetCurrentHP(enemy)+GetDmgShield(enemy)
+            if IsReady(Ignite) and 20*GetLevel(myHero)+50 > HPShield+(GetHPRegen(Enemy)*3) and ValidTarget(enemy, 600) then
+              CastTargetSpell(enemy, Ignite)
           end
         end 
     end
